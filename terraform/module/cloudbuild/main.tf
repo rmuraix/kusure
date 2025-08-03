@@ -50,26 +50,27 @@ resource "google_cloudbuildv2_repository" "main" {
   remote_uri        = "https://github.com/${var.repository_group}/${var.repository_name}.git"
 }
 
+/*
 resource "google_cloudbuild_trigger" "main" {
   provider    = google-beta
   project     = var.project_id
   name        = "${var.repository_name}-trigger"
-  description = "Build and deploy to Cloud Run service ${var.repository_name} on push to \"^main$\""
+  description = "Build and deploy to Cloud Run service ${var.repository_name} on push to main"
   location    = var.region
   filename    = "cloudbuild.yaml"
 
   repository_event_config {
     repository = google_cloudbuildv2_repository.main.id
     push {
-      branch = var.repository_branch
+      branch = "^${var.repository_branch}$"
     }
   }
 
   substitutions = {
     "_AR_HOSTNAME"   = "${var.region}-docker.pkg.dev"
-    "_DEPLOY_REGION" = "${var.region}"
+    "_DEPLOY_REGION" = var.region
     "_PLATFORM"      = "managed"
-    "_SERVICE_NAME"  = "${var.repository_name}"
+    "_SERVICE_NAME"  = var.repository_name
     "_TRIGGER_NAME"  = "${var.repository_name}-trigger"
   }
 
@@ -85,7 +86,7 @@ resource "null_resource" "wait_for_cloud_build_trigger" {
 
   depends_on = [google_cloudbuild_trigger.main]
   provisioner "local-exec" {
-    command = "gcloud builds triggers run ${google_cloudbuild_trigger.main.name} --branch=${var.repository_branch} --region=${var.region} --quiet"
+    command = "gcloud builds triggers run ${google_cloud_build_trigger.main.name} --branch=${var.repository_branch} --region=${var.region} --quiet"
   }
 
   provisioner "local-exec" {
@@ -101,4 +102,5 @@ EOT
     command = "gcloud run services delete ${var.repository_name} --platform managed --region ${google_cloudbuild_trigger.main.location} -q"
   }
 }
+*/
 
