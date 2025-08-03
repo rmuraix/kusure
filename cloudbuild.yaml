@@ -56,6 +56,8 @@ images:
 
 options:
   substitutionOption: ALLOW_LOOSE
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logging: CLOUD_LOGGING_ONLY
 
 substitutions:
   _PLATFORM: managed
