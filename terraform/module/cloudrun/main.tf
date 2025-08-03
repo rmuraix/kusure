@@ -23,7 +23,7 @@ variable "latest_tag" {
 }
 
 resource "google_cloud_run_v2_service" "main" {
-  name     = var.repository_name
+  name     = lower(var.repository_name)
   location = var.region
   project  = var.project_id
 
@@ -35,7 +35,7 @@ resource "google_cloud_run_v2_service" "main" {
       max_instance_count = 2
     }
     containers {
-      image = "${var.region}-docker.pkg.dev/${var.project_id}/cloud-run-source-deploy/${var.repository_name}/${var.repository_name}:latest"
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/cloud-run-source-deploy/${lower(var.repository_name)}/${lower(var.repository_name)}:latest"
       resources {
         cpu_idle = true
         limits = {
@@ -69,7 +69,7 @@ resource "google_cloud_run_v2_service" "main" {
 resource "google_cloud_run_service_iam_member" "member" {
   project  = var.project_id
   location = google_cloud_run_v2_service.main.location
-  service  = google_cloud_run_v2_service.main.name
+  service  = lower(google_cloud_run_v2_service.main.name)
   role     = "roles/run.invoker"
   member   = "allUsers"
 
