@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "hashicorp.terraform",
+        "charliermarsh.ruff",
+        "ms-python.mypy-type-checker"
+    ]
+}
