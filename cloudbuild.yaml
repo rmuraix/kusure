@@ -58,10 +58,11 @@ options:
   substitutionOption: ALLOW_LOOSE
 
 substitutions:
-  _PLATFORM: $_PLATFORM
-  _SERVICE_NAME: $_SERVICE_NAME
-  _DEPLOY_REGION: $_DEPLOY_REGION
-  _AR_HOSTNAME: $_AR_HOSTNAME
+  _PLATFORM: managed
+  _SERVICE_NAME: kusure
+  _DEPLOY_REGION: asia-east1
+  _AR_HOSTNAME: asia-east1-docker.pkg.dev
+
 
 tags:
   - gcp-cloud-build-deploy-cloud-run
