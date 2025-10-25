@@ -35,14 +35,14 @@ module "artifactregistory" {
 }
 
 module "cloudbuild" {
-  source            = "./module/cloudbuild"
-  depends_on        = [module.iam, module.secretmanager, module.artifactregistory]
-  project_id        = var.project_id
-  repository_group  = var.repository_group
-  repository_name   = var.repository_name
-  repository_branch = var.repository_branch
-  region            = var.region
-  github_secret_id  = module.secretmanager.github_secret_id
+  source              = "./module/cloudbuild"
+  depends_on          = [module.iam, module.secretmanager, module.artifactregistory]
+  project_id          = var.project_id
+  repository_group    = var.repository_group
+  repository_name     = var.repository_name
+  repository_branch   = var.repository_branch
+  region              = var.region
+  github_secret_id    = module.secretmanager.github_secret_id
   app_installation_id = var.app_installation_id
 }
 

@@ -22,18 +22,20 @@ variable "repository_group" {
 }
 
 variable "repository_name" {
-  type    = string
-  default = "kusuRe"
+  type        = string
+  description = "repository name"
+  default     = "kusuRe"
 }
 
 variable "repository_branch" {
-  type    = string
-  default = "^main$"
+  type        = string
+  description = "repository branch pattern"
+  default     = "^main$"
 }
 
 variable "app_installation_id" {
-  type = number
+  type        = number
   description = "GitHub App installation ID"
-  default = 65399203
+  default     = 65399203
 }
 
