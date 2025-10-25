@@ -16,6 +16,9 @@ jobs:
   terraform-checks:
     name: Terraform Checks
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     defaults:
       run:
         working-directory: ./terraform
@@ -85,6 +88,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: terraform-checks
     if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
     defaults:
       run:
         working-directory: ./terraform
