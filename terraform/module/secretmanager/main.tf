@@ -1,9 +1,18 @@
-
-variable "repository_name" {
-  type = string
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 4.64.0"
+    }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = ">= 4.64.0"
+    }
+  }
+  required_version = ">= 1.3"
 }
 
-variable "project_id" {
+variable "repository_name" {
   type = string
 }
 

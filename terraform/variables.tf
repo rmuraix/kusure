@@ -27,12 +27,6 @@ variable "repository_name" {
   default     = "kusuRe"
 }
 
-variable "repository_branch" {
-  type        = string
-  description = "repository branch pattern"
-  default     = "^main$"
-}
-
 variable "app_installation_id" {
   type        = number
   description = "GitHub App installation ID"

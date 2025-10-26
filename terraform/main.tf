@@ -21,7 +21,6 @@ module "secretmanager" {
   source          = "./module/secretmanager"
   depends_on      = [module.api]
   repository_name = var.repository_name
-  project_id      = var.project_id
 
   github_token              = data.external.env.result["github_token"]
   line_channel_access_token = data.external.env.result["line_channel_access_token"]
@@ -40,7 +39,6 @@ module "cloudbuild" {
   project_id          = var.project_id
   repository_group    = var.repository_group
   repository_name     = var.repository_name
-  repository_branch   = var.repository_branch
   region              = var.region
   github_secret_id    = module.secretmanager.github_secret_id
   app_installation_id = var.app_installation_id
@@ -54,5 +52,4 @@ module "cloudrun" {
   region                       = var.region
   line_channel_secret_id       = module.secretmanager.line_channel_secret_id
   line_channel_access_token_id = module.secretmanager.line_channel_access_token_id
-  latest_tag                   = "latest"
 }
