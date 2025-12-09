@@ -6,7 +6,7 @@ variable "region" {
 
 variable "service_account_key" {
   type        = string
-  description = "gcp project service account key file path"
+  description = "gcp project service account key file path. Leave empty for CI/validation environments that don't require actual GCP credentials."
   default     = ""
 }
 

@@ -12,14 +12,18 @@ terraform {
   required_version = ">= 1.3"
 }
 
+locals {
+  credentials = var.service_account_key != "" ? file("./key/${var.service_account_key}") : null
+}
+
 provider "google" {
   project     = var.project_id
   region      = "asia-northeast1"
-  credentials = var.service_account_key != "" ? file("./key/${var.service_account_key}") : null
+  credentials = local.credentials
 }
 
 provider "google-beta" {
   project     = var.project_id
   region      = "asia-northeast1"
-  credentials = var.service_account_key != "" ? file("./key/${var.service_account_key}") : null
+  credentials = local.credentials
 }
