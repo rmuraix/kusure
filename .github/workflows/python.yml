@@ -60,7 +60,9 @@ jobs:
 
       - name: Run Tests
         id: pytest
-        run: uv run pytest tests/ -v || [ $? -eq 5 ]
+        run: |
+          # Exit code 5 means no tests were collected, which is OK for now
+          uv run pytest tests/ -v || [ $? -eq 5 ]
         continue-on-error: true
 
       - name: Comment PR with results
