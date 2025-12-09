@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 4.64.0"
+    }
+  }
+  required_version = ">= 1.3"
+}
+
 variable "project_id" {
   type = string
 }
@@ -15,10 +25,6 @@ variable "line_channel_secret_id" {
 }
 
 variable "line_channel_access_token_id" {
-  type = string
-}
-
-variable "latest_tag" {
   type = string
 }
 

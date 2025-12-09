@@ -4,11 +4,25 @@ terraform {
       source  = "hashicorp/google"
       version = ">= 4.64.0"
     }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = ">= 4.64.0"
+    }
+    external = {
+      source  = "hashicorp/external"
+      version = ">= 2.3.0"
+    }
   }
   required_version = ">= 1.3"
 }
 
 provider "google" {
+  project     = var.project_id
+  region      = "asia-northeast1"
+  credentials = file("./key/${var.service_account_key}")
+}
+
+provider "google-beta" {
   project     = var.project_id
   region      = "asia-northeast1"
   credentials = file("./key/${var.service_account_key}")
