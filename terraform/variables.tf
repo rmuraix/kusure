@@ -7,7 +7,7 @@ variable "region" {
 variable "service_account_key" {
   type        = string
   description = "gcp project service account key file path"
-  default     = "terraform-key.json"
+  default     = ""
 }
 
 variable "project_id" {
@@ -31,5 +31,26 @@ variable "app_installation_id" {
   type        = number
   description = "GitHub App installation ID"
   default     = 65399203
+}
+
+variable "github_token" {
+  type        = string
+  description = "GitHub token for accessing repositories"
+  sensitive   = true
+  default     = ""
+}
+
+variable "line_channel_access_token" {
+  type        = string
+  description = "LINE channel access token"
+  sensitive   = true
+  default     = ""
+}
+
+variable "line_channel_secret" {
+  type        = string
+  description = "LINE channel secret"
+  sensitive   = true
+  default     = ""
 }
 

@@ -1,8 +1,3 @@
-
-data "external" "env" {
-  program = ["/bin/sh", "./env.sh"]
-}
-
 data "google_project" "project" {
 }
 
@@ -22,9 +17,9 @@ module "secretmanager" {
   depends_on      = [module.api]
   repository_name = var.repository_name
 
-  github_token              = data.external.env.result["github_token"]
-  line_channel_access_token = data.external.env.result["line_channel_access_token"]
-  line_channel_secret       = data.external.env.result["line_channel_secret"]
+  github_token              = var.github_token
+  line_channel_access_token = var.line_channel_access_token
+  line_channel_secret       = var.line_channel_secret
 }
 
 module "artifactregistory" {

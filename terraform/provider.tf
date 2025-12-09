@@ -8,10 +8,6 @@ terraform {
       source  = "hashicorp/google-beta"
       version = ">= 4.64.0"
     }
-    external = {
-      source  = "hashicorp/external"
-      version = ">= 2.3.0"
-    }
   }
   required_version = ">= 1.3"
 }
@@ -19,11 +15,11 @@ terraform {
 provider "google" {
   project     = var.project_id
   region      = "asia-northeast1"
-  credentials = file("./key/${var.service_account_key}")
+  credentials = var.service_account_key != "" ? file("./key/${var.service_account_key}") : null
 }
 
 provider "google-beta" {
   project     = var.project_id
   region      = "asia-northeast1"
-  credentials = file("./key/${var.service_account_key}")
+  credentials = var.service_account_key != "" ? file("./key/${var.service_account_key}") : null
 }
