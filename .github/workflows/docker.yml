@@ -1,0 +1,70 @@
+name: Docker CI
+
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'dev.Dockerfile'
+      - 'prod.Dockerfile'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.dockerignore'
+      - '.github/workflows/docker.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'dev.Dockerfile'
+      - 'prod.Dockerfile'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.dockerignore'
+      - '.github/workflows/docker.yml'
+
+jobs:
+  build-dev:
+    name: Build Dev Docker Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build dev.Dockerfile
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./dev.Dockerfile
+          push: false
+          tags: kusure:dev
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  build-prod:
+    name: Build Prod Docker Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build prod.Dockerfile
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./prod.Dockerfile
+          push: false
+          tags: kusure:prod
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
