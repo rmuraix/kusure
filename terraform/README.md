@@ -20,15 +20,17 @@ This directory contains Terraform configuration for deploying the kusure applica
 - `repository_group` - Repository group (default: "rmuraix")
 - `repository_name` - Repository name (default: "kusuRe")
 - `app_installation_id` - GitHub App installation ID (default: 65399203)
+- `service_account_key` - Path to GCP service account key file (optional for CI)
 
 ### Sensitive Variables
 
 The following variables are marked as sensitive and should be provided via environment variables or `.tfvars` files:
 
+Note: `service_account_key` is a file path and is not marked as sensitive in the Terraform configuration. Only the contents of the key file are sensitive.
+
 - `github_token` - GitHub token for accessing repositories
 - `line_channel_access_token` - LINE channel access token
 - `line_channel_secret` - LINE channel secret
-- `service_account_key` - Path to GCP service account key file (optional for CI)
 
 ## Usage
 
