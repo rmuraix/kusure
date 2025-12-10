@@ -113,6 +113,9 @@ jobs:
         continue-on-error: true
         env:
           TF_VAR_project_id: "dummy-project-id"
+          TF_VAR_github_token: "dummy-github-token"
+          TF_VAR_line_channel_access_token: "dummy-line-access-token"
+          TF_VAR_line_channel_secret: "dummy-line-secret"
 
       - name: Comment PR with plan
         if: always()
